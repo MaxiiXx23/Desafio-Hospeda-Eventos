@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Privacy {
+  PUBLIC
+  PRIVITE
+}
+
+model Address {
+  id String @id @default(uuid())
+
+  cep        String @db.Char(8)
+  street     String
+  number     Int
+  complement String
+  district   String
+  city       String
+  state      String @db.Char(2)
+
+  event Event @relation(fields: [eventId], references: [id])
+
+  eventId String
+
+  created_at DateTime @default(now())
+
+  @@map("addresses")
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  dateInitial DateTime
+  hourInitial String
+
+  privacy Privacy @default(PUBLIC)
+
+  created_at DateTime  @default(now())
+  Address    Address[]
+
+  @@map("events")
+}
