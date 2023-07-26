@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { EventsContext } from '@/contexts/EventsContext'
 
 import { ItemEvent } from '../ItemEvent'
@@ -30,9 +30,9 @@ export function Table() {
         </TrTableHeader>
       </HeaderTable>
       <Tbody>
-        {events.map((item) => (
-          <ItemEvent key={item.id} event={item} />
-        ))}
+        {events
+          ? events.map((item) => <ItemEvent key={item.id} event={item} />)
+          : null}
       </Tbody>
     </ContainerTable>
   )

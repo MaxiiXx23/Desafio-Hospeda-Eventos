@@ -32,7 +32,7 @@ export function MyEvents() {
     if (!search) {
       getListEvents(numberPagination)
     }
-  }, [numberPagination, search, loadingListEvents])
+  }, [numberPagination, search])
 
   useEffect(() => {
     async function getEventsByQuery(numberPagination: number, search: string) {

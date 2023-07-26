@@ -52,6 +52,9 @@ export function EventsContextProvider({ children }: IEventsContextProvider) {
     await axiosApi.delete(`/events/delete/${id}`)
     const newArrayEvents = events.filter((event) => event.id !== id)
 
+    console.log('arrays delets')
+    console.log(newArrayEvents)
+
     setEvents([...newArrayEvents])
   }
 
